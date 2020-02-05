@@ -157,11 +157,9 @@ ament_target_dependencies(
 )
 
 if(BUILD_TESTING)
+  find_package(ament_lint_auto)
+  ament_lint_auto_find_test_dependencies()
   find_package(ament_cmake_gtest REQUIRED)
-  find_package(ament_cmake_cppcheck REQUIRED)
-  find_package(ament_cmake_cpplint REQUIRED)
-  find_package(ament_cmake_lint_cmake REQUIRED)
-  find_package(ament_cmake_uncrustify REQUIRED)
   find_package(launch_testing_ament_cmake)
 
   #### FILTER BASE TESTS ####
@@ -253,11 +251,6 @@ if(BUILD_TESTING)
     COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/test/test_ros_robot_localization_listener.launch.py"
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
   )
-
-  ament_cppcheck(LANGUAGE "c++")
-  ament_cpplint()
-  ament_lint_cmake()
-  ament_uncrustify()
 
   install(
     TARGETS
